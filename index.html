@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#a9154b">
+  <meta name="description" content="Một tấm thiệp 20/10 ngọt ngào dành tặng những người phụ nữ tuyệt vời.">
+  <title>Chúc Mừng Ngày 20/10 🌷</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --wine: #8d123f;
+      --rose: #e94f83;
+      --pink: #ffb5cb;
+      --cream: #fff8f4;
+      --gold: #f8d88b;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; min-height: 100vh; overflow-x: hidden;
+      font-family: "Quicksand", sans-serif; color: #fffaf8;
+      background:
+        radial-gradient(ellipse at 15% 15%, rgba(255,190,211,.34), transparent 32%),
+        radial-gradient(ellipse at 85% 80%, rgba(248,216,139,.18), transparent 30%),
+        linear-gradient(135deg, #4a0828 0%, #86113f 48%, #c42e65 100%);
+      display: grid; place-items: center; padding: 28px 16px;
+    }
+    .glow {
+      position: fixed; width: 320px; height: 320px; border-radius: 50%;
+      background: rgba(255,166,198,.12); filter: blur(30px);
+      pointer-events: none; animation: breathe 5s ease-in-out infinite alternate;
+    }
+    .glow.one { top: -120px; left: -90px; }
+    .glow.two { bottom: -150px; right: -70px; animation-delay: -2s; }
+    .card {
+      width: min(760px, 100%); position: relative; isolation: isolate;
+      padding: clamp(28px, 6vw, 62px) clamp(20px, 6vw, 66px);
+      border: 1px solid rgba(255,255,255,.48); border-radius: 30px;
+      background: linear-gradient(145deg, rgba(255,255,255,.19), rgba(255,255,255,.07));
+      box-shadow: 0 28px 90px rgba(35,0,17,.38), inset 0 1px rgba(255,255,255,.25);
+      text-align: center; backdrop-filter: blur(16px);
+      animation: cardIn 1s cubic-bezier(.2,.8,.2,1) both;
+    }
+    .card::before, .card::after {
+      content: "✿"; position: absolute; color: var(--gold); opacity: .75;
+      font-size: 38px; animation: float 5s ease-in-out infinite;
+    }
+    .card::before { top: 22px; left: 25px; }
+    .card::after { right: 25px; bottom: 22px; animation-delay: -2.5s; }
+    .eyebrow {
+      text-transform: uppercase; letter-spacing: .24em; font-size: .78rem;
+      font-weight: 700; color: #ffe3ed; margin: 0 0 16px;
+    }
+    h1 {
+      font-family: "Playfair Display", Georgia, serif; font-weight: 600;
+      font-size: clamp(2.5rem, 8vw, 5.3rem); line-height: 1.06;
+      margin: 0; text-shadow: 0 5px 24px rgba(52,0,22,.24);
+    }
+    h1 span { display: block; color: #ffdca0; font-style: italic; }
+    .bouquet {
+      font-size: clamp(3rem, 8vw, 4.8rem); margin: 20px 0 8px;
+      filter: drop-shadow(0 10px 15px rgba(48,0,20,.22));
+      animation: bouquet 3.2s ease-in-out infinite;
+    }
+    .intro { max-width: 520px; margin: 16px auto 0; line-height: 1.8; font-size: 1.03rem; color: #fff0f5; }
+    .open-btn {
+      margin-top: 28px; border: 0; border-radius: 999px; padding: 15px 26px;
+      background: linear-gradient(110deg, #ffe6a9, #fff3d7);
+      color: #76113a; font: 700 1rem "Quicksand", sans-serif; cursor: pointer;
+      box-shadow: 0 8px 24px rgba(40,0,15,.25); transition: transform .2s, box-shadow .2s;
+    }
+    .open-btn:hover { transform: translateY(-3px); box-shadow: 0 13px 30px rgba(40,0,15,.32); }
+    .open-btn:focus-visible { outline: 3px solid white; outline-offset: 4px; }
+    .message {
+      display: grid; grid-template-rows: 0fr; opacity: 0;
+      transition: grid-template-rows .65s ease, opacity .45s ease, margin .45s ease;
+      margin-top: 0;
+    }
+    .message-inner { overflow: hidden; }
+    .message.show { grid-template-rows: 1fr; opacity: 1; margin-top: 25px; }
+    .message-box {
+      padding: 24px clamp(16px, 4vw, 30px); border-radius: 20px;
+      background: rgba(255,248,244,.12); border: 1px solid rgba(255,255,255,.27);
+      line-height: 1.9; color: #fff8fa;
+    }
+    .message-box strong { color: #ffe0a0; }
+    .signature { margin: 16px 0 0; color: #ffe0a0; font-family: "Playfair Display", Georgia, serif; font-style: italic; font-size: 1.25rem; }
+    .footer { margin: 28px 0 0; font-size: .8rem; color: rgba(255,240,246,.7); letter-spacing: .06em; }
+    .petal {
+      position: fixed; z-index: -1; top: -12vh; pointer-events: none;
+      font-size: 18px; opacity: .8; animation: fall linear forwards;
+      filter: drop-shadow(0 3px 5px rgba(30,0,10,.15));
+    }
+    .heart {
+      position: fixed; z-index: 5; pointer-events: none; font-size: 22px;
+      animation: heartUp 1.7s ease-out forwards;
+    }
+    @keyframes cardIn { from { opacity: 0; transform: translateY(24px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes breathe { to { transform: scale(1.25); opacity: .65; } }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-9px) rotate(8deg); } }
+    @keyframes bouquet { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-7px) rotate(2deg); } }
+    @keyframes fall { to { transform: translate3d(var(--drift), 115vh, 0) rotate(650deg); opacity: .15; } }
+    @keyframes heartUp { to { transform: translateY(-150px) scale(1.6) rotate(18deg); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow one"></div><div class="glow two"></div>
+  <main class="card">
+    <p class="eyebrow">A little note, just for you</p>
+    <h1>Chúc Mừng <span>Ngày 20/10</span></h1>
+    <div class="bouquet" aria-hidden="true">💐🌷💗</div>
+    <p class="intro">Gửi đến những người phụ nữ tuyệt vời — mong hôm nay của bạn ngập tràn yêu thương, nụ cười và những điều dịu dàng nhất.</p>
+    <button class="open-btn" id="openBtn" type="button" aria-expanded="false" aria-controls="message">
+      Mở thiệp yêu thương ✨
+    </button>
+    <section class="message" id="message" aria-live="polite">
+      <div class="message-inner">
+        <div class="message-box">
+          <strong>Chúc bạn luôn xinh đẹp, hạnh phúc và rạng rỡ theo cách riêng của mình!</strong><br>
+          Chúc mọi ngày đều có lý do để mỉm cười, mọi ước mơ đều có cơ hội thành hiện thực,
+          và luôn có những người chân thành ở bên yêu thương, trân trọng bạn.
+          <p class="signature">Bạn xứng đáng với những điều tuyệt vời nhất. ❤️</p>
+        </div>
+      </div>
+    </section>
+    <p class="footer">20 THÁNG 10 · TẶNG BẠN MỘT CHÚT YÊU THƯƠNG</p>
+  </main>
+  <script>
+    const button = document.getElementById("openBtn");
+    const message = document.getElementById("message");
+    let opened = false;
+
+    function makePetal() {
+      const petal = document.createElement("span");
+      petal.className = "petal";
+      petal.textContent = ["🌸", "🌷", "💮", "✨", "💕"][Math.floor(Math.random() * 5)];
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.setProperty("--drift", (Math.random() * 180 - 90) + "px");
+      petal.style.animationDuration = (6 + Math.random() * 7) + "s";
+      petal.style.fontSize = (14 + Math.random() * 17) + "px";
+      document.body.appendChild(petal);
+      petal.addEventListener("animationend", () => petal.remove());
+    }
+
+    function burstHearts() {
+      for (let i = 0; i < 18; i++) {
+        const heart = document.createElement("span");
+        heart.className = "heart";
+        heart.textContent = ["💗", "💖", "🌷", "✨"][Math.floor(Math.random() * 4)];
+        heart.style.left = (15 + Math.random() * 70) + "vw";
+        heart.style.top = (45 + Math.random() * 35) + "vh";
+        heart.style.animationDelay = (Math.random() * .35) + "s";
+        document.body.appendChild(heart);
+        heart.addEventListener("animationend", () => heart.remove());
+      }
+    }
+
+    button.addEventListener("click", () => {
+      opened = !opened;
+      message.classList.toggle("show", opened);
+      button.setAttribute("aria-expanded", String(opened));
+      button.textContent = opened ? "Gửi thêm yêu thương 💖" : "Mở thiệp yêu thương ✨";
+      if (opened) burstHearts();
+    });
+
+    for (let i = 0; i < 12; i++) setTimeout(makePetal, i * 350);
+    setInterval(makePetal, 850);
+  </script>
+</body>
+</html>
